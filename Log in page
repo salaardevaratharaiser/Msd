@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>MH Shoppy - Login & Signup</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    @import url("https://fonts.googleapis.com/css2?family=Spartan:wght@400;500;600&display=swap");
+
+    * { margin: 0; padding: 0; box-sizing: border-box; font-family: "Spartan", sans-serif; }
+    body {
+      display: flex; justify-content: center; align-items: center;
+      min-height: 100vh;
+      background: linear-gradient(rgba(0,0,0,0.7),rgba(0,0,0,0.7)),
+                  url("https://source.unsplash.com/1600x900/?shopping,mall") no-repeat center/cover;
+    }
+    .wrapper {
+      position: relative; width: 400px; background: #fff; border-radius: 12px;
+      box-shadow: 0 0 25px rgba(0,0,0,0.5); overflow: hidden;
+      transition: height 0.3s ease; padding: 30px;
+    }
+    .form-box { display: none; }
+    .form-box.active { display: block; }
+    h2 { text-align: center; color: #162938; margin-bottom: 20px; }
+    .input-box { position: relative; margin: 20px 0; }
+    .input-box input {
+      width: 100%; padding: 12px 40px 12px 12px;
+      border: 2px solid #162938; border-radius: 6px;
+      outline: none; font-size: 1em; color: #162938;
+    }
+    .input-box .icon {
+      position: absolute; right: 12px; top: 50%;
+      transform: translateY(-50%); color: #162938;
+    }
+    .remember-forgot {
+      display: flex; justify-content: space-between;
+      font-size: 0.9em; margin: 10px 0;
+    }
+    .remember-forgot a { color: #162938; text-decoration: none; }
+    .remember-forgot a:hover { text-decoration: underline; }
+    .btn {
+      width: 100%; padding: 12px; border: none; border-radius: 6px;
+      background: #162938; color: #fff; font-weight: 600; cursor: pointer;
+      transition: 0.3s;
+    }
+    .btn:hover { background: #4CAF50; }
+    .toggle-link { text-align: center; margin-top: 15px; font-size: 0.9em; }
+    .toggle-link a { color: #162938; font-weight: 600; text-decoration: none; }
+    .toggle-link a:hover { text-decoration: underline; }
+  </style>
+</head>
+<body>
+  <div class="wrapper">
+    <!-- Login Form -->
+    <div class="form-box login active">
+      <h2>Login</h2>
+      <form id="loginForm">
+        <div class="input-box">
+          <input type="email" required placeholder="Email">
+          <span class="icon"><i class="fas fa-envelope"></i></span>
+        </div>
+        <div class="input-box">
+          <input type="password" required placeholder="Password">
+          <span class="icon"><i class="fas fa-lock"></i></span>
+        </div>
+        <div class="remember-forgot">
+          <label><input type="checkbox"> Remember me</label>
+          <a href="#">Forgot Password?</a>
+        </div>
+        <button type="submit" class="btn">Login</button>
+        <div class="toggle-link">
+          <p>Don't have an account? <a href="#" id="toRegister">Sign Up</a></p>
+        </div>
+      </form>
+    </div>
+
+    <!-- Signup Form -->
+    <div class="form-box register">
+      <h2>Sign Up</h2>
+      <form id="registerForm">
+        <div class="input-box">
+          <input type="text" required placeholder="Username">
+          <span class="icon"><i class="fas fa-user"></i></span>
+        </div>
+        <div class="input-box">
+          <input type="email" required placeholder="Email">
+          <span class="icon"><i class="fas fa-envelope"></i></span>
+        </div>
+        <div class="input-box">
+          <input type="password" required placeholder="Password">
+          <span class="icon"><i class="fas fa-lock"></i></span>
+        </div>
+        <div class="input-box">
+          <input type="password" required placeholder="Confirm Password">
+          <span class="icon"><i class="fas fa-lock"></i></span>
+        </div>
+        <div class="remember-forgot">
+          <label><input type="checkbox" required> Agree to Terms</label>
+        </div>
+        <button type="submit" class="btn">Register</button>
+        <div class="toggle-link">
+          <p>Already have an account? <a href="#" id="toLogin">Login</a></p>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <script>
+    const loginBox = document.querySelector(".form-box.login");
+    const registerBox = document.querySelector(".form-box.register");
+    const toRegister = document.getElementById("toRegister");
+    const toLogin = document.getElementById("toLogin");
+
+    toRegister.addEventListener("click", e => {
+      e.preventDefault();
+      loginBox.classList.remove("active");
+      registerBox.classList.add("active");
+    });
+    toLogin.addEventListener("click", e => {
+      e.preventDefault();
+      registerBox.classList.remove("active");
+      loginBox.classList.add("active");
+    });
+
+    document.getElementById("loginForm").addEventListener("submit", e => {
+      e.preventDefault();
+      alert("✅ Logged in successfully!");
+    });
+    document.getElementById("registerForm").addEventListener("submit", e => {
+      e.preventDefault();
+      alert("🎉 Registration successful!");
+    });
+  </script>
+</body>
+</html>
